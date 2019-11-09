@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/caloriestracker/bin/Debug/netcoreapp2.1
+/.vs/caloriestracker/v16/Server/sqlite3
+/caloriestracker/obj
