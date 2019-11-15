@@ -14,7 +14,6 @@ namespace caloriestracker
      Friday,
      Saturday,
      Sunday
-
     }
     enum TypeofMeal {Breakfast,Lunch,Dinner}
 

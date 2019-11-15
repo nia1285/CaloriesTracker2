@@ -9,22 +9,32 @@ namespace caloriestracker
 
     {
         public DbSet<Tracker> Trackers { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Tracker2019;Integrated Security=True;Connect Timeout=30;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            _ = modelBuilder.Entity<Tracker>((Action<Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Tracker>>)(entity =>
-             {
-                 entity.HasKey(a => a.Username).HasName("PK_Trackers");
+            modelBuilder.Entity<Tracker>(entity =>
+            {
+                entity.HasKey(t => t.Username).HasName("PK_Trackers");
+                entity.Property(t => t.dayOfWeek).IsRequired();
+                entity.Property(t => t.TypeofMeal).IsRequired().HasMaxLength(10);
+                entity.ToTable("Trackers");
+            });
 
-                 entity.Property(a => a.DayOfWeek).IsRequired();
+            modelBuilder.Entity<Transaction>(entity =>
+            {
+                entity.HasKey(tr => tr.Username).HasName("PK_Transactions");
+                entity.Property(tr => tr.TransactionDate).ValueGeneratedOnAdd();
+                entity.Property(tr => tr.Amount).IsRequired();
+                entity.HasOne(tr => tr.Tracker).WithMany().HasForeignKey(tr => tr.Username);
 
-                 entity.Property(a => a.TypeofMeal).IsRequired();
 
-                 entity.Property((System.Linq.Expressions.Expression<Func<Tracker, decimal>>)(a => (decimal)a.CaloriesAmount)).IsRequired().HasMaxLength(10);
-    
-                 entity.ToTable("Trackers");
-
-             }));
+            });
         }
     }
-}
+ }

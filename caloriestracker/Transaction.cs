@@ -13,6 +13,7 @@ namespace caloriestracker
         public decimal Amount { get; set; }
         public TypeOfMeal Meal { get; set; }
         public decimal TotalCaloriesAmount { get; set; }
+        public virtual Tracker Tracker { get; set; }
 
     }
 }
