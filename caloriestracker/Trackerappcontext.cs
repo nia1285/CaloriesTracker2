@@ -31,7 +31,7 @@ namespace caloriestracker
                 entity.HasKey(tr => tr.Username).HasName("PK_Transactions");
                 entity.Property(tr => tr.TransactionDate).ValueGeneratedOnAdd();
                 entity.Property(tr => tr.Amount).IsRequired();
-                entity.HasOne(tr => tr.Tracker).WithMany().HasForeignKey(tr => tr.Username);
+                
 
 
             });

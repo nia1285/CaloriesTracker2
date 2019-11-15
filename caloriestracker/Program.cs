@@ -61,7 +61,7 @@ namespace caloriestracker
 
                     case "1":
 
-                        Console.Write("username:");
+                        Console.Write("Username:");
 
                         var username = Console.ReadLine();
 
@@ -100,7 +100,7 @@ namespace caloriestracker
 
                         var trackers = Console.ReadLine();
 
-                        TrackerApp.GetTrackersbyusername(username);
+                        TrackerApp.GetTrackersbyusername("username");
 
                         foreach (var myTracker in trackers)
 
@@ -127,7 +127,7 @@ namespace caloriestracker
 
                         trackers = Console.ReadLine();
 
-                        TrackerApp.GetTrackersbyusername(username);
+                        TrackerApp.GetTrackersbyusername("username");
 
                         foreach (var myTracker in trackers)
 

@@ -10,7 +10,7 @@ namespace caloriestracker
         private static List<Tracker> Trackers = new List<Tracker>();
         private static List<Transaction> Transactions = new List<Transaction>();
 
-        public static Tracker Createtracker(int username,
+        public static Tracker Createtracker(string username,
             TypeofMeal Meal, decimal CaloriesAmount)
         {
             var Tracker = new Tracker
@@ -35,7 +35,7 @@ namespace caloriestracker
         {
             return Trackers.Where(a => a.username == username);
         }
-        public static void Addition(int username, decimal amount)
+        public static void Addition(string username, decimal amount)
         {
 
             var Tracker = Trackers.SingleOrDefault(a => a.username == username);
@@ -54,7 +54,7 @@ namespace caloriestracker
                 Username = Tracker.username,
                 TransactionDate = DateTime.Now,
                 Meal = TypeOfMeal.Breakfast,
-                TotalCaloriesAmount = Tracker.Amount
+                TotalCaloriesAmount = Tracker.CaloriesAmount
 
             };
             Transactions.Add(Transaction);
